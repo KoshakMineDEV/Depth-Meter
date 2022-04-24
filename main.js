@@ -48,12 +48,13 @@ function updatePoints() {
 
 Callback.addCallback("LocalTick", function() {
 	k += SPEED;
-	if (!(World.getThreadTime() % 10)) updatePoints();
+	if (k > 1) updatePoints();
 });
 
 Item.registerIconOverrideFunction(ItemID.depthmeter, function(item, isModUI) {
 	let height = Math.floor(Player.getPosition().y) - 1;
 	let frame = Math.round(Math.max(Math.min(height + 40, 154), 0) / 8.6);
+	if(k > 1 || k < 0) Game.message(k);
 	if (Player.getDimension() != 0) frame = Math.round(interpolate(lastPoint, nextPoint, k));
 	//Game.tipMessage("Frame: " + frame + "\nMultiplier: " + k.toFixed(2) + "\nlastRand: " + lastRand.toFixed(2) + "\nnextRand: " + nextRand.toFixed(2));
 	return { name: "depth", data: frame };
