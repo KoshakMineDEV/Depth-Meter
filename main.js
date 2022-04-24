@@ -53,8 +53,8 @@ Callback.addCallback("LocalTick", function() {
 
 Item.registerIconOverrideFunction(ItemID.depthmeter, function(item, isModUI) {
 	let height = Math.floor(Player.getPosition().y) - 1;
-	let frame = Math.floor(Math.max(Math.min(height + 40, 154), 0) / 8.6);
-	if (Player.getDimension() != 0) frame = Math.round(interpolate(lastRand, nextRand, k));
+	let frame = Math.round(Math.max(Math.min(height + 40, 154), 0) / 8.6);
+	if (Player.getDimension() != 0) frame = Math.round(interpolate(lastPoint, nextPoint, k));
 	//Game.tipMessage("Frame: " + frame + "\nMultiplier: " + k.toFixed(2) + "\nlastRand: " + lastRand.toFixed(2) + "\nnextRand: " + nextRand.toFixed(2));
 	return { name: "depth", data: frame };
 });
@@ -78,7 +78,7 @@ Item.registerIconOverrideFunction(ItemID.depthmeter, function(item) {
 //Server
 
 Item.registerUseFunction("depthmeter", function(coords, item, block, player) {
-	let height = Math.floor(Entity.getPosition().y);
+	let height = Math.floor(Entity.getPosition(player).y);
 	let higher = height >= 64;
 	height = higher ? height - 64 : 64 - height;
 	Network.sendToAllClients("depthmeter.message", {
