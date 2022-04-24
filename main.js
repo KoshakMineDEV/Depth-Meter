@@ -54,7 +54,6 @@ Callback.addCallback("LocalTick", function() {
 Item.registerIconOverrideFunction(ItemID.depthmeter, function(item, isModUI) {
 	let height = Math.floor(Player.getPosition().y) - 1;
 	let frame = Math.round(Math.max(Math.min(height + 40, 154), 0) / 8.6);
-	if(k > 1 || k < 0) Game.message(k);
 	if (Player.getDimension() != 0) frame = Math.round(interpolate(lastPoint, nextPoint, k));
 	//Game.tipMessage("Frame: " + frame + "\nMultiplier: " + k.toFixed(2) + "\nlastRand: " + lastRand.toFixed(2) + "\nnextRand: " + nextRand.toFixed(2));
 	return { name: "depth", data: frame };
