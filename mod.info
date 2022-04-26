@@ -1,6 +1,6 @@
 {
   "name":"Depth Meter",
-  "author":"Koshak Mine",
-  "version": "1.1",
+  "author":"Koshak Mine & Contributors",
+  "version": "1.2",
   "description": "This mod adds the Depth Meter, a tool that lets you see your elevation in terms of distance from sea level."
 }
