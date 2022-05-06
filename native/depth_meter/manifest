@@ -1,0 +1,10 @@
+{
+	"shared": {
+		"name": "depth_meter"
+	},
+	"depends": [
+		"minecraftpe",
+		"innercore",
+		"nativejs"
+	]
+}
