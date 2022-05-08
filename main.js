@@ -38,11 +38,12 @@ Item.registerIconOverrideFunction(ItemID.depthmeter, function(item, isModUI) {
 
 Item.registerUseFunction("depthmeter", function(coords, item, block, player) {
 	let dimension = Entity.getDimension(player);
-	if (dimension == 1 || dimension == 0){
+	if (dimension == 1 || dimension == 0) {
 		let height = Math.floor(Entity.getPosition(player).y);
 		let higher = height >= 64;
 		height = higher ? height - 64 : 64 - height;
-		Network.sendToAllClients("depthmeter.message", {
+		let client = Network.getClientForPlayer(player);
+		if (!!client) client.send("depthmeter.message", {
 			message: Translation.translate("You are §a") + height + (higher ? Translation.translate(" blocks §3above the ") : Translation.translate(" blocks §3below the ")) + (dimension == 0 ? Transaltion.translate("sea level") : Translation.translate("lava level"))
 		});
 	}
