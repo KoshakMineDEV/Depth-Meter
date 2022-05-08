@@ -1,12 +1,15 @@
 //																																					
+//horizon headers
 #include <hook.h>
 #include <mod.h>
 #include <logger.h>
 #include <symbol.h>
 #include <nativejs.h>
-#include "headers/vtable.h"
+
+//my headers
 #include "all_headers.cpp"
 
+//C++ headers
 #include <cmath>
 
 const char* TAG = "DEPTH-METER";
@@ -63,7 +66,7 @@ JS_EXPORT(DepthMeterModule, getFrame, "I()", (JNIEnv* env) {
 		ItemStack stack(*item, 1, 0);
 		if(&stack == nullptr) return 0;
 		float frameProgress = (float) item->getAnimationFrameFor((Mob*) player, false, &stack, false) / 31.0;
-		result = round(frameProgress * 18.0);
+		result = round(frameProgress * 23.0);
 	}
 	return NativeJS::wrapIntegerResult(result);
 });
